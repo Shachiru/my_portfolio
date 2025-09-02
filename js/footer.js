@@ -1,17 +1,11 @@
-/* Footer with automatic year update and animations */
-
 document.addEventListener('DOMContentLoaded', function () {
-    // Set current year in copyright text
     updateCopyrightYear();
 
-    // Initialize footer particles
     initFooterParticles();
 
-    // Initialize smooth scroll for footer links
     initSmoothScroll();
 });
 
-// Update copyright year automatically
 function updateCopyrightYear() {
     const currentYearElement = document.getElementById('current-year');
     if (currentYearElement) {
@@ -20,7 +14,6 @@ function updateCopyrightYear() {
     }
 }
 
-// Initialize particles for footer background
 function initFooterParticles() {
     if (window.particlesJS && document.getElementById('footer-particles')) {
         particlesJS('footer-particles', {
@@ -87,7 +80,6 @@ function initFooterParticles() {
     }
 }
 
-// Initialize smooth scroll for footer links
 function initSmoothScroll() {
     document.querySelectorAll('.footer-links a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
