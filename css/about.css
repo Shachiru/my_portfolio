@@ -1,0 +1,564 @@
+#about {
+    padding: 100px 0;
+    position: relative;
+    background: linear-gradient(135deg, rgba(10, 10, 20, 0.97), rgba(15, 15, 25, 0.98));
+    overflow: hidden;
+    color: #fff;
+}
+
+/* Particles background */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+/* Cosmic section title */
+.section-title {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.cosmic-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #fff;
+    position: relative;
+    text-shadow: 0 0 20px rgba(86, 58, 250, 0.5);
+}
+
+.cosmic-title .highlight {
+    color: transparent;
+    background: linear-gradient(90deg, #56a5fa, #d16be5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+}
+
+.title-line {
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, #56a5fa, #d16be5);
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0 0 15px rgba(86, 58, 250, 0.8);
+}
+
+/* Glassmorphism cards */
+.glass-card {
+    background: rgba(20, 20, 35, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 1px 1px rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent
+    );
+    transform: rotate(45deg);
+    transition: all 1.5s ease;
+    opacity: 0;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+    inset 0 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.glass-card:hover::before {
+    left: 100%;
+    opacity: 1;
+}
+
+/* Bio card special styling */
+.bio-card {
+    text-align: center;
+    padding: 35px;
+    margin-bottom: 50px;
+    background: rgba(20, 20, 35, 0.35);
+}
+
+.bio-card .lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+/* Card headers */
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #ffffff, #a5a5a5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.icon-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(86, 165, 250, 0.2), rgba(209, 107, 229, 0.2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(86, 58, 250, 0.3);
+}
+
+/* Timeline styling */
+.timeline-container {
+    position: relative;
+    padding: 15px 10px;
+}
+
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    bottom: 15px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    border-radius: 1px;
+}
+
+.timeline-item {
+    padding-left: 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #56a5fa, #d16be5);
+    box-shadow: 0 0 10px rgba(86, 58, 250, 0.7);
+    z-index: 1;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+}
+
+.timeline-item .date {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, rgba(86, 165, 250, 0.2), rgba(209, 107, 229, 0.2));
+    border-radius: 30px;
+    font-size: 0.8rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.timeline-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.timeline-item p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.timeline-item .status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(86, 165, 250, 0.2);
+    color: #56a5fa;
+    font-size: 0.8rem;
+}
+
+/* Skills styling */
+.skills-container {
+    padding: 10px;
+}
+
+.skill-category {
+    margin-bottom: 25px;
+}
+
+.skill-category h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.skill-category h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #56a5fa, #d16be5);
+    border-radius: 50%;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    padding: 6px 14px;
+    background: linear-gradient(135deg, rgba(86, 165, 250, 0.15), rgba(209, 107, 229, 0.15));
+    border-radius: 30px;
+    font-size: 0.85rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skill-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(86, 165, 250, 0.3), rgba(209, 107, 229, 0.3));
+}
+
+/* Soft skills progress bars */
+.soft-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.soft-skill-item {
+    display: flex;
+    align-items: center;
+}
+
+.skill-progress-bg {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.skill-progress {
+    height: 100%;
+    width: 0%; /* Will be set by JS */
+    background: linear-gradient(90deg, #56a5fa, #d16be5);
+    border-radius: 4px;
+}
+
+.soft-skill-item span {
+    width: 100px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Resume download button */
+.btn-galaxy {
+    background: linear-gradient(45deg, rgba(20, 20, 40, 0.9), rgba(40, 40, 80, 0.9));
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 30px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-galaxy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(86, 58, 250, 0.4), rgba(255, 75, 95, 0.4));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+.btn-galaxy:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.btn-galaxy:hover::before {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .icon-box {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cosmic-title {
+        font-size: 2.2rem;
+    }
+
+    .bio-card .lead {
+        font-size: 1rem;
+    }
+
+    .glass-card {
+        padding: 25px 20px;
+    }
+
+    .timeline-item {
+        padding-left: 30px;
+    }
+
+    .soft-skill-item span {
+        width: 80px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ================ COSMIC DOWNLOAD BUTTON STYLING ================ */
+.cosmic-download-btn {
+    background: rgba(20, 20, 40, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 12px 28px;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+.cosmic-download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,
+    rgba(86, 58, 250, 0.4),
+    rgba(209, 107, 229, 0.4),
+    rgba(23, 229, 236, 0.4));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.cosmic-download-btn:hover {
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cosmic-download-btn:hover::before {
+    opacity: 1;
+    transform: rotate(3deg) scale(1.05);
+}
+
+.cosmic-download-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom download icon container */
+.download-icon-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Custom animated download icon */
+.download-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+}
+
+.download-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 12px;
+    background: currentColor;
+    transition: height 0.2s ease;
+}
+
+.download-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+    box-shadow: -4px -4px currentColor, 4px -4px currentColor;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: transform 0.2s ease;
+}
+
+.cosmic-download-btn:hover .download-icon-container {
+    transform: translateY(3px);
+}
+
+/* Pulse effect */
+.cosmic-download-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: none;
+}
+
+.cosmic-download-btn:hover::after {
+    animation: pulse 1.5s ease-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(20);
+        opacity: 0;
+    }
+}
+
+/* Document icon with page flipping animation */
+.document-icon {
+    position: relative;
+    width: 14px;
+    height: 18px;
+    border: 1.5px solid currentColor;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-right: 2px;
+}
+
+.document-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 6px 6px 0;
+    border-color: transparent currentColor transparent transparent;
+    transition: transform 0.3s ease;
+}
+
+.document-icon::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    width: 8px;
+    height: 1px;
+    background: currentColor;
+    box-shadow: 0 3px 0 currentColor, 0 6px 0 currentColor;
+    opacity: 0.7;
+}
+
+.cosmic-download-btn:hover .document-icon::before {
+    transform: rotate(-15deg);
+}

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shachiru Rashmika - Portfolio</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- AOS for animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!-- Required libraries for the about section -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS files -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body class="bg-dark text-white">
+<!-- Navbar Section -->
+<nav id="navbar" class="navbar fixed-top navbar-expand-lg mx-auto glass-nav animate-nav" data-aos="fade-down">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Shachiru Rashmika</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Home Section with 3D Star Animation -->
+<section id="home" class="section d-flex align-items-center justify-content-center" data-aos="fade-up"
+         data-aos-duration="1000">
+    <!-- Star canvas background -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Animated glowing orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container text-center position-relative">
+        <div class="glass-card">
+            <h1 class="display-1 text-gradient">Welcome to My Portfolio</h1>
+            <p class="lead">I'm <span class="highlight">Shachiru Rashmika</span>, a passionate developer.</p>
+            <div class="d-flex justify-content-center">
+                <a href="#about" class="btn btn-galaxy btn-lg">
+                    <span>Learn More</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-arrow-down ms-2" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section" data-aos="fade-up" data-aos-duration="1000">
+    <!-- Cosmic particles background -->
+    <div class="particles-container">
+        <div id="particles-js"></div>
+    </div>
+
+    <div class="container position-relative">
+        <!-- Section heading with cosmic glow -->
+        <div class="section-title text-center mb-5">
+            <h2 class="cosmic-title">About <span class="highlight">Me</span></h2>
+            <div class="title-line"></div>
+        </div>
+
+        <!-- Bio with glassmorphism card -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <div class="glass-card bio-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                    <div class="card-content">
+                        <p class="lead">Motivated and detail-oriented Intern Software Engineer specializing in
+                            full-stack web development, as well as UI/UX design. Demonstrated passion for creating
+                            intuitive interfaces and optimizing user experiences through continuous learning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="row">
+            <!-- Left column: Education -->
+            <div class="col-lg-6 mb-4">
+                <div class="glass-card h-100" data-tilt data-tilt-max="3">
+                    <div class="card-header">
+                        <div class="icon-box">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Education</h3>
+                    </div>
+
+                    <div class="timeline-container">
+                        <div class="timeline">
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                                <span class="date">2023 - 2026</span>
+                                <h4>BSc (Hons) in Computer Science</h4>
+                                <p>University of Bolton (UK)</p>
+                                <span class="status">Pending</span>
+                            </div>
+
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                                <span class="date">2023 - Present</span>
+                                <h4>Graduate Diploma in Software Engineering</h4>
+                                <p>Institute of Software Engineering (IJSE)</p>
+                            </div>
+
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                                <span class="date">2022</span>
+                                <h4>G.C.E A/L Examination - Math Stream</h4>
+                                <p>H/Ruhunu Vijayaba College</p>
+                            </div>
+
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                                <span class="date">2019</span>
+                                <h4>G.C.E O/L Examination</h4>
+                                <p>H/Ruhunu Vijayaba College</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column: Skills -->
+            <div class="col-lg-6 mb-4">
+                <div class="glass-card h-100" data-tilt data-tilt-max="3">
+                    <div class="card-header">
+                        <div class="icon-box">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Skills</h3>
+                    </div>
+
+                    <!-- Skill categories -->
+                    <div class="skills-container">
+                        <!-- Frontend -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                            <h4>Front-End</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">React.js</span>
+                                <span class="skill-tag">Bootstrap</span>
+                                <span class="skill-tag">Tailwind</span>
+                                <span class="skill-tag">Next.js</span>
+                            </div>
+                        </div>
+
+                        <!-- Backend -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                            <h4>Back-End</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Express.js</span>
+                                <span class="skill-tag">Spring Boot</span>
+                                <span class="skill-tag">OOP</span>
+                            </div>
+                        </div>
+
+                        <!-- Databases -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                            <h4>Databases & DevOps</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">CI/CD</span>
+                                <span class="skill-tag">AWS</span>
+                            </div>
+                        </div>
+
+                        <!-- Soft Skills -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                            <h4>Professional Skills</h4>
+                            <div class="soft-skills">
+                                <div class="soft-skill-item">
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percentage="90"></div>
+                                    </div>
+                                    <span>Problem Solving</span>
+                                </div>
+                                <div class="soft-skill-item">
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percentage="85"></div>
+                                    </div>
+                                    <span>Communication</span>
+                                </div>
+                                <div class="soft-skill-item">
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percentage="88"></div>
+                                    </div>
+                                    <span>Teamwork</span>
+                                </div>
+                                <div class="soft-skill-item">
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percentage="92"></div>
+                                    </div>
+                                    <span>Adaptability</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume download button -->
+        <div class="text-center mt-4">
+            <a href="assets/Shachiru-Rashmika-Resume.pdf" class="cosmic-download-btn" download>
+                <span class="document-icon"></span>
+                <span>Download Resume</span>
+                <span class="download-icon-container">
+            <span class="download-icon"></span>
+        </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section cosmic-section" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container position-relative">
+        <!-- Section heading with cosmic glow -->
+        <div class="section-title text-center mb-5">
+            <h2 class="cosmic-title">My <span class="highlight">Projects</span></h2>
+            <div class="title-line"></div>
+        </div>
+
+        <!-- Project filters -->
+        <div class="project-filters mb-5" data-aos="fade-up">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="java">Java Applications</button>
+                <button class="filter-btn" data-filter="ui">UI/UX Design</button>
+            </div>
+        </div>
+
+        <!-- Projects grid -->
+        <div class="projects-grid">
+            <!-- Project Card 1: Connect Four Game -->
+            <div class="project-card" data-category="java" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-card-inner" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare
+                     data-tilt-max-glare="0.2">
+                    <div class="project-card-front">
+                        <div class="project-image-container">
+                            <img src="assets/images/connect-4-game.png" alt="Connect Four Game" class="project-image">
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category">Java Application</span>
+                            <h3 class="project-title">Connect Four Game</h3>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">JavaFX</span>
+                            <span class="tech-badge">OOP</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card-back">
+                        <h3>Connect Four Game</h3>
+                        <p>A classic two-player connection game where players take turns dropping colored discs into a
+                            vertical grid. The objective is to be the first to form a horizontal, vertical, or diagonal
+                            line of four discs.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Shachiru/connect-four-game_CW" target="_blank"
+                               class="project-link github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#demo-connect-four" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2: GYM Genius -->
+            <div class="project-card" data-category="java" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-card-inner" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare
+                     data-tilt-max-glare="0.2">
+                    <div class="project-card-front">
+                        <div class="project-image-container">
+                            <img src="assets/images/GYM-genius ss.png" alt="GYM Genius" class="project-image">
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category">Full Stack Application</span>
+                            <h3 class="project-title">GYM Genius</h3>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">MVC</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card-back">
+                        <h3>GYM Genius - Management System</h3>
+                        <p>A comprehensive gym management system built with Java and Spring Boot. Features include
+                            member management, workout tracking, equipment maintenance, and billing functionality.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Shachiru/Project_GymGenius-MVC" target="_blank"
+                               class="project-link github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#demo-gym-genius" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3: Portfolio Website -->
+            <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-card-inner" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare
+                     data-tilt-max-glare="0.2">
+                    <div class="project-card-front">
+                        <div class="project-image-container">
+                            <img src="assets/images/portfolio-thumbnail.jpg" alt="Portfolio Website"
+                                 class="project-image">
+                            <div class="featured-tag">Current Site</div>
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category">Web Development</span>
+                            <h3 class="project-title">Portfolio Website</h3>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Bootstrap</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card-back">
+                        <h3>Personal Portfolio</h3>
+                        <p>My personal portfolio website featuring a modern design with glassmorphism effects,
+                            interactive elements, and advanced animations. Built with HTML5, CSS3, and vanilla
+                            JavaScript.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="project-link github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link demo current-site">
+                                <i class="fas fa-circle"></i> Current Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 4: E-Commerce Platform -->
+            <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="400">
+                <div class="project-card-inner" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare
+                     data-tilt-max-glare="0.2">
+                    <div class="project-card-front">
+                        <div class="project-image-container">
+                            <img src="assets/images/ecommerce-placeholder.jpg" alt="E-Commerce Platform"
+                                 class="project-image">
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category">Full Stack Web</span>
+                            <h3 class="project-title">E-Commerce Platform</h3>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Express</span>
+                            <span class="tech-badge">MongoDB</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card-back">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-featured e-commerce platform with user authentication, product catalog, shopping cart,
+                            and payment processing. Built with the MERN stack (MongoDB, Express, React, Node.js).</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="project-link github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 5: Mobile App UI Design -->
+            <div class="project-card" data-category="ui" data-aos="fade-up" data-aos-delay="500">
+                <div class="project-card-inner" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare
+                     data-tilt-max-glare="0.2">
+                    <div class="project-card-front">
+                        <div class="project-image-container">
+                            <img src="assets/images/ui-design-placeholder.jpg" alt="Mobile App UI Design"
+                                 class="project-image">
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category">UI/UX Design</span>
+                            <h3 class="project-title">Fitness App UI</h3>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Figma</span>
+                            <span class="tech-badge">Adobe XD</span>
+                            <span class="tech-badge">Prototyping</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card-back">
+                        <h3>Fitness App UI Design</h3>
+                        <p>A comprehensive UI/UX design for a fitness tracking mobile application. Includes user journey
+                            mapping, wireframes, high-fidelity mockups, and interactive prototypes.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="project-link github">
+                                <i class="fab fa-behance"></i> Behance
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i> View Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 6: Weather App -->
+            <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="600">
+                <div class="project-card-inner" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare
+                     data-tilt-max-glare="0.2">
+                    <div class="project-card-front">
+                        <div class="project-image-container">
+                            <img src="assets/images/weather-app-placeholder.jpg" alt="Weather App"
+                                 class="project-image">
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category">API Integration</span>
+                            <h3 class="project-title">Weather Application</h3>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">API</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">Responsive</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card-back">
+                        <h3>Dynamic Weather App</h3>
+                        <p>A weather application that displays current conditions and forecasts based on user location
+                            or search. Integrates with OpenWeatherMap API for real-time data.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="project-link github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="#" class="project-link demo">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View more projects button -->
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://github.com/Shachiru?tab=repositories" target="_blank" class="cosmic-download-btn">
+                <i class="fab fa-github me-2"></i>
+                <span>View More Projects</span>
+                <i class="fas fa-chevron-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating particles for background effect -->
+    <div id="projects-particles"></div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section cosmic-section" data-aos="fade-up" data-aos-duration="1000">
+    <!-- Cosmic particles background -->
+    <div class="particles-container">
+        <div id="contact-particles"></div>
+    </div>
+
+    <div class="container position-relative">
+        <!-- Section heading with cosmic glow -->
+        <div class="section-title text-center">
+            <h2 class="cosmic-title">Get <span class="highlight">in Touch</span></h2>
+            <div class="title-line"></div>
+            <p class="section-subtitle">Have a project in mind or want to collaborate? Send me a message!</p>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            <!-- Contact Form -->
+            <div class="col-lg-7 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card contact-form-card">
+                    <form id="contactForm" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <div class="cosmic-input-group">
+                                    <input type="text" id="name" class="cosmic-input" required autocomplete="off">
+                                    <label for="name" class="cosmic-label">Your Name</label>
+                                    <div class="cosmic-input-line"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <div class="cosmic-input-group">
+                                    <input type="email" id="email" class="cosmic-input" required autocomplete="off">
+                                    <label for="email" class="cosmic-label">Your Email</label>
+                                    <div class="cosmic-input-line"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="cosmic-input-group">
+                                <input type="text" id="subject" class="cosmic-input" required autocomplete="off">
+                                <label for="subject" class="cosmic-label">Subject</label>
+                                <div class="cosmic-input-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="cosmic-input-group textarea">
+                                <textarea id="message" class="cosmic-input" rows="5" required></textarea>
+                                <label for="message" class="cosmic-label">Your Message</label>
+                                <div class="cosmic-input-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="cosmic-button">
+                                <span class="cosmic-button-text">Send Message</span>
+                                <span class="cosmic-button-icon">
+                                    <i class="fas fa-paper-plane"></i>
+                                </span>
+                                <span class="cosmic-button-effect"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card contact-info-card">
+                    <h3>Contact Information</h3>
+                    <p class="contact-intro">Feel free to reach out to me through any of these channels. I'm always open
+                        to discussing new projects, creative ideas, or opportunities.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:shachirurashmika35@gmail.com">shachirurashmika35@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+94779276268">+94 779 276 268</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Galle, Sri Lanka</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/shachiru-rashmika-6b5761308/" class="social-icon"
+                           target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Shachiru" class="social-icon" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/shachiru_r/" class="social-icon" target="_blank"
+                           title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/shachiru.kodithuwakku" class="social-icon" target="_blank"
+                           title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="message-modal" id="successModal">
+            <div class="message-modal-content">
+                <div class="success-checkmark">
+                    <div class="check-icon">
+                        <span class="icon-line line-tip"></span>
+                        <span class="icon-line line-long"></span>
+                    </div>
+                </div>
+                <h3>Message Sent!</h3>
+                <p>Thank you for reaching out. I'll get back to you shortly.</p>
+                <button class="cosmic-button close-modal">
+                    <span class="cosmic-button-text">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer id="footer" class="cosmic-footer">
+    <div class="footer-particles-container">
+        <div id="footer-particles"></div>
+    </div>
+
+    <div class="container position-relative">
+        <!-- Footer top section with logo and navigation -->
+        <div class="footer-top">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-brand">
+                        <a href="#" class="footer-logo">Shachiru<span class="highlight">.</span></a>
+                        <p class="footer-tagline">Creating digital experiences with passion and precision.</p>
+                    </div>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/Shachiru" target="_blank" class="footer-social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/shachiru-rashmika-6b5761308/" target="_blank" class="footer-social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/shachiru_r/" target="_blank" class="footer-social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/shachiru.kodithuwakku" target="_blank" class="footer-social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6 mb-4 mb-md-0">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-md-0">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="mailto:shachirurashmika35@gmail.com">
+                                <i class="fas fa-envelope"></i> shachirurashmika35@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+94779276268">
+                                <i class="fas fa-phone"></i> +94 779 276 268
+                            </a>
+                        </li>
+                        <li>
+                            <span><i class="fas fa-map-marker-alt"></i> Galle, Sri Lanka</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h4 class="footer-heading">Let's Connect</h4>
+                    <p class="footer-text">Interested in working together or have a question? Feel free to reach out.</p>
+                    <a href="#contact" class="footer-button">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Separator line with glow effect -->
+        <div class="footer-separator"></div>
+
+        <!-- Copyright section -->
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; <span id="current-year"></span> Shachiru Rashmika. All rights reserved.
+            </p>
+            <p class="designed-by">
+                Designed with <i class="fas fa-heart pulse"></i> and <i class="fas fa-code"></i>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+<script>
+    AOS.init({
+        duration: 1200, // Smooth animation duration
+        once: true // Animate only once
+    });
+</script>
+<!-- Custom JS files -->
+<script src="js/navbar.js"></script>
+<script src="js/home.js"></script>
+<script src="js/about.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/footer.js"></script>
+</body>
+</html>
