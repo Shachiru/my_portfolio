@@ -1,20 +1,13 @@
-/* Advanced Contact Section with Form Validation and Animation */
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particle background
     initParticles();
 
-    // Initialize form interactions
     initFormInteractions();
 
-    // Initialize form validation and submission
     initFormSubmission();
 
-    // Initialize contact item animations
     initContactAnimations();
 });
 
-// Initialize particles background
 function initParticles() {
     if (window.particlesJS && document.getElementById('contact-particles')) {
         particlesJS('contact-particles', {
@@ -81,15 +74,12 @@ function initParticles() {
     }
 }
 
-// Initialize form field interactions
 function initFormInteractions() {
-    // Check for existing content on load
     document.querySelectorAll('.cosmic-input').forEach(input => {
         if (input.value.trim() !== '') {
             input.classList.add('has-content');
         }
 
-        // Listen for changes
         input.addEventListener('input', function() {
             if (this.value.trim() !== '') {
                 this.classList.add('has-content');
@@ -98,7 +88,6 @@ function initFormInteractions() {
             }
         });
 
-        // Focus effects
         input.addEventListener('focus', function() {
             this.parentElement.classList.add('focused');
         });
@@ -109,7 +98,6 @@ function initFormInteractions() {
     });
 }
 
-// Initialize form validation and submission
 function initFormSubmission() {
     const contactForm = document.getElementById('contactForm');
     const successModal = document.getElementById('successModal');
@@ -118,7 +106,6 @@ function initFormSubmission() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Basic form validation
             let isValid = true;
             const fields = contactForm.querySelectorAll('.cosmic-input');
 
@@ -135,23 +122,18 @@ function initFormSubmission() {
             });
 
             if (isValid) {
-                // Simulate form submission
                 const submitButton = contactForm.querySelector('.cosmic-button');
                 submitButton.innerHTML = '<span class="cosmic-button-text">Sending...</span><div class="loader"></div>';
                 submitButton.disabled = true;
 
-                // Simulate API call
                 setTimeout(() => {
-                    // Show success message
                     showSuccessModal();
 
-                    // Reset form
                     contactForm.reset();
                     document.querySelectorAll('.cosmic-input').forEach(input => {
                         input.classList.remove('has-content');
                     });
 
-                    // Reset button
                     submitButton.innerHTML = '<span class="cosmic-button-text">Send Message</span><span class="cosmic-button-icon"><i class="fas fa-paper-plane"></i></span><span class="cosmic-button-effect"></span>';
                     submitButton.disabled = false;
                 }, 1500);
@@ -159,7 +141,6 @@ function initFormSubmission() {
         });
     }
 
-    // Close modal button
     document.querySelectorAll('.close-modal').forEach(btn => {
         btn.addEventListener('click', function() {
             hideSuccessModal();
@@ -167,30 +148,23 @@ function initFormSubmission() {
     });
 }
 
-// Email validation helper
 function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
-// Show field error
 function showError(field, message) {
-    // Remove existing error if any
     removeError(field);
 
-    // Add error class
     field.classList.add('error');
 
-    // Create error message
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
 
-    // Insert error after field
     field.parentElement.appendChild(errorDiv);
 }
 
-// Remove field error
 function removeError(field) {
     field.classList.remove('error');
     const errorMessage = field.parentElement.querySelector('.error-message');
@@ -199,20 +173,17 @@ function removeError(field) {
     }
 }
 
-// Show success modal
 function showSuccessModal() {
     const modal = document.getElementById('successModal');
     if (modal) {
         modal.classList.add('show');
 
-        // Close on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 hideSuccessModal();
             }
         });
 
-        // Close on outside click
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 hideSuccessModal();
@@ -221,7 +192,6 @@ function showSuccessModal() {
     }
 }
 
-// Hide success modal
 function hideSuccessModal() {
     const modal = document.getElementById('successModal');
     if (modal) {
@@ -229,9 +199,7 @@ function hideSuccessModal() {
     }
 }
 
-// Initialize contact item animations
 function initContactAnimations() {
-    // Animate contact icons on hover
     document.querySelectorAll('.contact-item').forEach(item => {
         const icon = item.querySelector('.contact-icon');
 
@@ -244,7 +212,6 @@ function initContactAnimations() {
         });
     });
 
-    // Social media icon animations
     document.querySelectorAll('.social-icon').forEach(icon => {
         icon.addEventListener('mouseenter', () => {
             icon.style.transform = 'translateY(-5px) scale(1.1)';
