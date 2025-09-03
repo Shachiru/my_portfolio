@@ -1,23 +1,15 @@
-/* Advanced Projects Section with 3D Cards and Animations */
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize tilt effect for project cards
     initTiltEffect();
 
-    // Initialize filter functionality
     initFilters();
 
-    // Initialize particle background
     initParticles();
 
-    // Initialize image loading animations
     initImageLoading();
 
-    // Add smooth interaction animations
     initInteractions();
 });
 
-// Initialize tilt effect
 function initTiltEffect() {
     if (window.VanillaTilt) {
         VanillaTilt.init(document.querySelectorAll(".project-card-inner"), {
@@ -33,25 +25,20 @@ function initTiltEffect() {
     }
 }
 
-// Initialize project filtering
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Update active button
             document.querySelector('.filter-btn.active').classList.remove('active');
             button.classList.add('active');
 
-            // Get filter value
             const filterValue = button.getAttribute('data-filter');
 
-            // Filter projects
             projectCards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
 
-                // Hide/show card with animation
                 if (filterValue === 'all' || filterValue === cardCategory) {
                     card.classList.remove('hidden');
                     setTimeout(() => {
@@ -67,7 +54,6 @@ function initFilters() {
                 }
             });
 
-            // Re-arrange the grid after filtering
             setTimeout(() => {
                 rearrangeGrid();
             }, 600);
@@ -75,18 +61,15 @@ function initFilters() {
     });
 }
 
-// Rearrange grid after filtering (maintain clean layout)
 function rearrangeGrid() {
     const projectsGrid = document.querySelector('.projects-grid');
     const visibleProjects = document.querySelectorAll('.project-card:not(.hidden)');
 
-    // Simple re-arrangement for demo
     visibleProjects.forEach((project, index) => {
         project.style.order = index;
     });
 }
 
-// Initialize particles background
 function initParticles() {
     if (window.particlesJS) {
         particlesJS('projects-particles', {
@@ -157,7 +140,6 @@ function initParticles() {
     }
 }
 
-// Lazy load and animate images
 function initImageLoading() {
     const projectImages = document.querySelectorAll('.project-image');
 
@@ -171,16 +153,13 @@ function initImageLoading() {
             });
         }
 
-        // Add error handling
         image.addEventListener('error', () => {
             image.src = 'assets/images/placeholder-project.jpg';
         });
     });
 }
 
-// Add smooth interactions and animations
 function initInteractions() {
-    // Tech badge animations
     const techBadges = document.querySelectorAll('.tech-badge');
 
     techBadges.forEach(badge => {
@@ -193,7 +172,6 @@ function initInteractions() {
         });
     });
 
-    // Project links hover effect
     const projectLinks = document.querySelectorAll('.project-link');
 
     projectLinks.forEach(link => {
@@ -206,7 +184,6 @@ function initInteractions() {
         });
     });
 
-    // Modal functionality for project details (if needed)
     document.querySelectorAll('.project-link.demo').forEach(link => {
         link.addEventListener('click', (e) => {
             if (!link.getAttribute('href').startsWith('http')) {
