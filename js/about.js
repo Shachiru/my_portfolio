@@ -1,23 +1,15 @@
-/* Advanced about.js with particles and animations */
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particles
     initParticles();
 
-    // Initialize smooth scroll for nav links
     initSmoothScroll();
 
-    // Animate skill bars
     animateSkillBars();
 
-    // Initialize tilt effect for cards
     initTiltEffect();
 
-    // Intersection observer for animating elements when scrolled into view
     observeElements();
 });
 
-// Initialize particles background
 function initParticles() {
     if (window.particlesJS && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
@@ -106,7 +98,6 @@ function initParticles() {
     }
 }
 
-// Smooth scrolling for navigation links
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -123,7 +114,6 @@ function initSmoothScroll() {
     });
 }
 
-// Animate skill progress bars
 function animateSkillBars() {
     // Delay the animation for a better effect
     setTimeout(() => {
@@ -139,10 +129,8 @@ function animateSkillBars() {
     }, 500);
 }
 
-// Initialize tilt effect for cards
 function initTiltEffect() {
     if (window.VanillaTilt) {
-        // Find all elements with data-tilt attribute
         const elements = document.querySelectorAll('[data-tilt]');
 
         elements.forEach(element => {
@@ -162,7 +150,6 @@ function initTiltEffect() {
     }
 }
 
-// Intersection Observer for animations
 function observeElements() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -175,12 +162,10 @@ function observeElements() {
         threshold: 0.2
     });
 
-    // Observe timeline items
     document.querySelectorAll('.timeline-item').forEach(item => {
         observer.observe(item);
     });
 
-    // Observe skill categories
     document.querySelectorAll('.skill-category').forEach(item => {
         observer.observe(item);
     });
@@ -188,12 +173,10 @@ function observeElements() {
     const profilePhoto = document.getElementById('profile-photo');
     if (profilePhoto) {
         profilePhoto.addEventListener('load', function() {
-            // Add subtle animation once photo is loaded
             this.style.transition = 'opacity 0.8s ease';
             this.style.opacity = '1';
         });
 
-        // Initialize with opacity 0 for fade-in effect
         profilePhoto.style.opacity = '0';
     }
 }
