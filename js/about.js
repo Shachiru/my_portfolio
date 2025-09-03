@@ -184,4 +184,16 @@ function observeElements() {
     document.querySelectorAll('.skill-category').forEach(item => {
         observer.observe(item);
     });
+
+    const profilePhoto = document.getElementById('profile-photo');
+    if (profilePhoto) {
+        profilePhoto.addEventListener('load', function() {
+            // Add subtle animation once photo is loaded
+            this.style.transition = 'opacity 0.8s ease';
+            this.style.opacity = '1';
+        });
+
+        // Initialize with opacity 0 for fade-in effect
+        profilePhoto.style.opacity = '0';
+    }
 }
