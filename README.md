@@ -1,6 +1,6 @@
 # My Portfolio
 
-![Portfolio Banner](assets/images/banner.png)
+![Portfolio Banner](assets/banner-image.png)
 
 ## 👋 Welcome to My Portfolio
 
