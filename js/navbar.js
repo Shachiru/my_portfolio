@@ -1,9 +1,21 @@
-/* navbar.js - Simplified navbar functionality */
+/* navbar.js - Improved navbar functionality with immediate loading */
 
-document.addEventListener('DOMContentLoaded', function() {
+// Immediately set up the navbar when the DOM begins to load
+document.addEventListener('DOMContentLoaded', function () {
+    // Show navbar immediately with animation
+    const navbar = document.getElementById('navbar');
+
+    // Force immediate display of navbar
+    if (navbar) {
+        // Add loaded class after a very short delay to trigger animation
+        setTimeout(() => {
+            navbar.classList.add('loaded');
+        }, 10);
+    }
+
     // Smooth scroll for navigation links
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
 
             const targetId = this.getAttribute('href');
@@ -27,12 +39,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add subtle hover effect for navbar
-    const navbar = document.getElementById('navbar');
-    navbar.addEventListener('mouseenter', function() {
+    navbar.addEventListener('mouseenter', function () {
         this.style.transform = 'scale(1.02)';
     });
 
-    navbar.addEventListener('mouseleave', function() {
+    navbar.addEventListener('mouseleave', function () {
         this.style.transform = 'scale(1)';
     });
 });
+
+// Ensure navbar loads even before full DOM content is loaded
+(function () {
+    // This code runs immediately
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        // Make sure navbar is visible
+        navbar.style.display = 'block';
+    }
+})();
