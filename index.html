@@ -39,31 +39,56 @@
     </div>
 </nav>
 
-<!-- Home Section with 3D Star Animation -->
-<section id="home" class="section d-flex align-items-center justify-content-center" data-aos="fade-up"
-         data-aos-duration="1000">
-    <!-- Star canvas background -->
-    <canvas id="starfield"></canvas>
+<!-- Cosmic Galaxy Home Section -->
+<section id="home" class="cosmic-space">
+    <!-- 3D Star Canvas -->
+    <canvas id="star-field"></canvas>
 
-    <!-- Animated glowing orbs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <!-- Floating Nebula Elements -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
 
-    <div class="container text-center position-relative">
-        <div class="glass-card">
-            <h1 class="display-1 text-gradient">Welcome to My Portfolio</h1>
-            <p class="lead">I'm <span class="highlight">Shachiru Rashmika</span>, a passionate developer.</p>
-            <div class="d-flex justify-content-center">
-                <a href="#about" class="btn btn-galaxy btn-lg">
-                    <span>Learn More</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-arrow-down ms-2" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-                    </svg>
-                </a>
+    <!-- Main Content Container -->
+    <div class="space-content">
+        <!-- Name with fadeout animation -->
+        <div class="cosmic-name">
+            <h1 class="name-headline">Shachiru Rashmika</h1>
+        </div>
+
+        <!-- Identity Line -->
+        <div class="identity-line">
+            <span class="identity-text">Software Engineering Student</span>
+            <span class="identity-divider"></span>
+            <div class="aspiring-container">
+                <span class="aspiring-prefix">Aspiring</span>
+                <span class="aspiring-role" id="changing-role">UI/UX Designer</span>
             </div>
+        </div>
+
+        <!-- Explore Button -->
+        <div class="explore-section">
+            <a href="#about" class="cosmic-button">
+                <span class="cosmic-button-text">Explore My Universe</span>
+                <div class="cosmic-button-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+        <!-- Pulsing Orbital Path -->
+        <div class="orbital-path"></div>
+
+        <!-- Floating Particles -->
+        <div class="particle-container">
+            <div class="floating-particle p1"></div>
+            <div class="floating-particle p2"></div>
+            <div class="floating-particle p3"></div>
+            <div class="floating-particle p4"></div>
+            <div class="floating-particle p5"></div>
         </div>
     </div>
 </section>

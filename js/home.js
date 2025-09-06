@@ -1,199 +1,224 @@
-/* Advanced home.js with 3D star animation */
+/* 3D Galaxy Animation with Heartbeat Stars */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize star field
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize 3D star field
     initStarField();
 
-    // Button interactions
-    initButtonEffects();
+    // Initialize role typewriter effect
+    initRoleAnimation();
 
-    // 3D tilt effect for glass card
-    initTiltEffect();
+    // Update current time
+    updateDateTime();
 });
 
-// Star field animation
+// 3D Star field with heartbeat animation
 function initStarField() {
-    const canvas = document.getElementById('starfield');
+    const canvas = document.getElementById('star-field');
     const ctx = canvas.getContext('2d');
 
-    // Set canvas to full window size
+    // Set canvas to full screen
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
 
-    // Create stars
+    // Star properties
     let stars = [];
-    let shootingStars = [];
     const maxStars = window.innerWidth > 768 ? 200 : 100;
     const layers = 3;
 
+    // Create stars with different depths
     function createStars() {
         stars = [];
         for (let layer = 0; layer < layers; layer++) {
-            for (let i = 0; i < maxStars / layers; i++) {
-                const size = Math.random() * 2 + (layer * 1);
+            const layerStars = Math.floor(maxStars / layers);
+
+            for (let i = 0; i < layerStars; i++) {
+                const size = Math.random() * 1.5 + (layer * 0.8);
+
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
+                    z: Math.random() * 1000, // Depth for 3D effect
                     radius: size,
                     originalRadius: size,
                     color: `rgba(255, 255, 255, ${0.5 + (layer * 0.2)})`,
                     layer: layer,
-                    twinkleSpeed: Math.random() * 0.1 + 0.01,
-                    twinkleDirection: Math.random() > 0.5 ? 1 : -1,
-                    twinkleTime: 0
+                    pulse: 0,
+                    pulseSpeed: Math.random() * 0.02 + 0.01,
+                    // Add vertical movement
+                    yOffset: 0,
+                    yDirection: Math.random() > 0.5 ? 1 : -1,
+                    ySpeed: Math.random() * 0.2 + 0.1
                 });
             }
-        }
-    }
-
-    // Create a shooting star
-    function createShootingStar() {
-        if (Math.random() > 0.97 && shootingStars.length < 3) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * (canvas.height / 3);
-            const length = Math.random() * 100 + 50;
-            const angle = Math.PI / 4 + (Math.random() * Math.PI / 4);
-
-            shootingStars.push({
-                x: x,
-                y: y,
-                length: length,
-                angle: angle,
-                speed: Math.random() * 10 + 15,
-                opacity: 1
-            });
         }
     }
 
     // Animation loop
-    function animate() {
+    function animateStars() {
+        // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw and update stars
+        // Update and draw stars
         stars.forEach(star => {
-            // Twinkle effect
-            star.twinkleTime += star.twinkleSpeed;
-            const twinkleFactor = Math.sin(star.twinkleTime) * 0.5 + 0.5;
-            star.radius = star.originalRadius * (0.7 + (twinkleFactor * 0.6));
+            // Heartbeat pulse effect
+            star.pulse += star.pulseSpeed;
+            const pulseFactor = Math.sin(star.pulse) * 0.5 + 0.5;
+            star.radius = star.originalRadius * (0.8 + (pulseFactor * 0.5));
 
-            // Draw star
-            ctx.beginPath();
-            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-            ctx.fillStyle = star.color;
-            ctx.fill();
+            // Vertical movement (up and down)
+            star.yOffset += star.ySpeed * star.yDirection;
 
-            // Move star (parallax effect)
-            star.x += (0.1 + (star.layer * 0.1)) * (star.layer + 1);
+            // Reverse direction at limits
+            if (Math.abs(star.yOffset) > 20) {
+                star.yDirection *= -1;
+            }
 
-            // Reset star position when it goes off-screen
-            if (star.x > canvas.width + 10) {
-                star.x = -10;
+            // 3D perspective movement
+            star.z -= 0.2 + (star.layer * 0.1);
+
+            // Reset depth when star moves past viewer
+            if (star.z <= 0) {
+                star.z = 1000;
+                star.x = Math.random() * canvas.width;
                 star.y = Math.random() * canvas.height;
             }
-        });
 
-        // Create shooting stars
-        createShootingStar();
+            // Calculate position with perspective
+            const scale = 1000 / star.z;
+            const x = (star.x - canvas.width / 2) * scale + canvas.width / 2;
+            const y = (star.y - canvas.height / 2) * scale + canvas.height / 2 + star.yOffset;
 
-        // Draw and update shooting stars
-        shootingStars.forEach((star, index) => {
-            ctx.save();
-            ctx.translate(star.x, star.y);
-            ctx.rotate(star.angle);
+            // Draw star with glow effect
+            const glowSize = star.radius * (1 + pulseFactor * 0.5);
 
-            // Create gradient for the shooting star
-            const gradient = ctx.createLinearGradient(0, 0, star.length, 0);
-            gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
-            gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+            // Star glow
+            const gradient = ctx.createRadialGradient(
+                x, y, 0,
+                x, y, glowSize * 2
+            );
+            gradient.addColorStop(0, `rgba(255, 255, 255, ${0.8 * scale})`);
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
             ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(star.length, 0);
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = gradient;
-            ctx.stroke();
+            ctx.arc(x, y, glowSize * 2, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
 
-            ctx.restore();
-
-            // Update shooting star
-            star.x += Math.cos(star.angle) * star.speed;
-            star.y += Math.sin(star.angle) * star.speed;
-            star.opacity -= 0.01;
-
-            // Remove shooting star when it fades out
-            if (star.opacity <= 0) {
-                shootingStars.splice(index, 1);
-            }
+            // Star core
+            ctx.beginPath();
+            ctx.arc(x, y, star.radius * scale, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, scale)})`;
+            ctx.fill();
         });
 
-        requestAnimationFrame(animate);
+        // Continue animation
+        requestAnimationFrame(animateStars);
     }
 
-    // Initialize
-    window.addEventListener('resize', function() {
+    // Handle window resize
+    window.addEventListener('resize', function () {
         resizeCanvas();
         createStars();
     });
 
+    // Initialize star field
     resizeCanvas();
     createStars();
-    animate();
-}
+    animateStars();
 
-// Button effects
-function initButtonEffects() {
-    const btn = document.querySelector('.btn-galaxy');
+    // Add mouse interaction
+    canvas.addEventListener('mousemove', function (e) {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
 
-    if (btn) {
-        btn.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        stars.forEach(star => {
+            // Calculate distance from mouse to star
+            const dx = mouseX - star.x;
+            const dy = mouseY - star.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            this.style.setProperty('--x', `${x}px`);
-            this.style.setProperty('--y', `${y}px`);
-        });
-
-        // Smooth scroll on button click
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: 'smooth'
-                });
+            // Create repulsion effect when mouse is near
+            if (distance < 100) {
+                // Increase pulse speed when mouse is near
+                star.pulseSpeed = 0.05;
+                // Make star move away from mouse
+                const angle = Math.atan2(dy, dx);
+                star.x -= Math.cos(angle) * 0.5;
+                star.y -= Math.sin(angle) * 0.5;
+            } else {
+                // Reset pulse speed when mouse is far
+                star.pulseSpeed = Math.random() * 0.02 + 0.01;
             }
         });
-    }
+    });
 }
 
-// 3D tilt effect for glass card
-function initTiltEffect() {
-    const card = document.querySelector('.glass-card');
+// Role typewriter animation
+function initRoleAnimation() {
+    const roleElement = document.getElementById('changing-role');
+    const roles = [
+        "UI/UX Designer",
+        "Frontend Developer",
+        "Software Engineer",
+        "DevOps Engineer"
+    ];
 
-    if (card) {
-        card.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    let currentIndex = 0;
+    let currentText = '';
+    let isDeleting = false;
 
-            // Calculate rotation based on mouse position
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateY = ((x - centerX) / centerX) * 5; // Max 5deg
-            const rotateX = ((centerY - y) / centerY) * 5; // Max 5deg
+    function typeRole() {
+        const fullText = roles[currentIndex];
 
-            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
+        // Add or remove characters based on typing direction
+        if (isDeleting) {
+            currentText = fullText.substring(0, currentText.length - 1);
+        } else {
+            currentText = fullText.substring(0, currentText.length + 1);
+        }
 
-        card.addEventListener('mouseleave', function() {
-            // Reset to default animation
-            this.style.transform = '';
-        });
+        // Update text
+        roleElement.textContent = currentText;
+
+        // Typing speed
+        let typingSpeed = isDeleting ? 80 : 150;
+
+        // When complete or when to start deleting
+        if (!isDeleting && currentText === fullText) {
+            // Pause at complete word
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && currentText === '') {
+            // Move to next role
+            isDeleting = false;
+            currentIndex = (currentIndex + 1) % roles.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(typeRole, typingSpeed);
+    }
+
+    // Start typing animation
+    typeRole();
+}
+
+// Update date and time
+function updateDateTime() {
+    const dateElement = document.getElementById('current-datetime');
+
+    if (!dateElement) return;
+
+    // Set to current time initially
+    updateTime();
+
+    // Update every second
+    setInterval(updateTime, 1000);
+
+    function updateTime() {
+        const now = new Date();
+        const formattedDateTime = now.toISOString().replace('T', ' ').substring(0, 19);
+        dateElement.textContent = formattedDateTime;
     }
 }
