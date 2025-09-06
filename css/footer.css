@@ -101,7 +101,6 @@
     text-shadow: 0 5px 15px rgba(86, 165, 250, 0.4);
 }
 
-/* Footer Navigation - Clean Text Only */
 .footer-nav {
     display: flex;
     gap: 40px;
@@ -116,7 +115,6 @@
     transition: all 0.3s ease;
     position: relative;
     padding: 5px 0;
-    /* Removed all background, border, and box styling */
 }
 
 .footer-nav a::after {
@@ -132,13 +130,12 @@
 
 .footer-nav a:hover {
     color: #fff;
-    font-weight: 700; /* Bold on hover */
+    font-weight: 700;
     transform: translateY(-2px);
-    /* Removed box shadow and background */
 }
 
 .footer-nav a:hover::after {
-    width: 100%; /* Full underline on hover */
+    width: 100%;
 }
 
 /* Footer Bottom */
@@ -162,7 +159,6 @@
     letter-spacing: 0.5px;
 }
 
-/* Subtle glow effect for better readability */
 .footer-content, .footer-bottom {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
@@ -210,7 +206,6 @@
 
     .footer-nav a {
         font-size: 0.9rem;
-        /* Removed width and text-align since there's no box */
     }
 
     .copyright {
@@ -222,13 +217,11 @@
     }
 }
 
-/* Performance optimizations */
 .stars, .stars-2, .stars-3 {
     will-change: transform;
     backface-visibility: hidden;
 }
 
-/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
     .stars, .stars-2, .stars-3 {
         animation-duration: 300s;
