@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/achievements.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -266,6 +267,241 @@
             <span class="download-icon"></span>
         </span>
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="section" data-aos="fade-up" data-aos-duration="1000">
+    <!-- Cosmic particles background -->
+    <div class="particles-container">
+        <div id="achievements-particles"></div>
+    </div>
+
+    <div class="container position-relative">
+        <!-- Section heading with cosmic glow -->
+        <div class="section-title text-center mb-5">
+            <h2 class="cosmic-title">My <span class="highlight">Achievements</span></h2>
+            <div class="title-line"></div>
+            <p class="section-subtitle">Professional certifications and accomplishments that showcase my expertise</p>
+        </div>
+
+        <!-- Achievements grid layout -->
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="achievements-container">
+                    <!-- Achievement Cards Grid -->
+                    <div class="achievements-grid">
+                        <!-- Achievement 1 -->
+                        <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="achievement-image-container" onclick="viewCertificate('cert-1', 'assets/certificates/java-21-certificate.png', 'Top Features of Java 21', 'LinkedIn Learning', 'September 2025', ['Java', 'Programming'], 'https://www.linkedin.com/learning/certificates/e0e7014f57ebd3e7aa993311d560abf46e60ab5d0ad0202fd32b533a17092b3b')">
+                                <img src="assets/certificates/java-21-certificate.png"
+                                     alt="Top Features of Java 21"
+                                     class="achievement-image">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="image-overlay">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-title">Top Features of Java 21</h4>
+                                <p class="achievement-provider">LinkedIn Learning</p>
+                                <p class="achievement-date">September 2025</p>
+                                <div class="achievement-skills">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">Programming</span>
+                                </div>
+                                <a href="https://www.linkedin.com/learning/certificates/e0e7014f57ebd3e7aa993311d560abf46e60ab5d0ad0202fd32b533a17092b3b"
+                                   class="verify-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Verify Certificate
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Achievement 2 -->
+                        <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="achievement-image-container" onclick="viewCertificate('cert-2', 'assets/certificates/python-for-beginners.png', 'Python for Beginners', 'University of Moratuwa', 'July 2025', ['Python', 'Programming'], 'https://www.linkedin.com/posts/shachiru1234_python-coding-universityofmoratuwa-activity-7361305083285794817-0imj')">
+                                <img src="assets/certificates/python-for-beginners.png"
+                                     alt="Python for Beginners"
+                                     class="achievement-image">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="image-overlay">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-title">Python for Beginners</h4>
+                                <p class="achievement-provider">University of Moratuwa</p>
+                                <p class="achievement-date">July 2025</p>
+                                <div class="achievement-skills">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Programming</span>
+                                </div>
+                                <a href="https://www.linkedin.com/posts/shachiru1234_python-coding-universityofmoratuwa-activity-7361305083285794817-0imj"
+                                   class="verify-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Verify Certificate
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Achievement 3 -->
+                        <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="achievement-image-container" onclick="viewCertificate('cert-3', 'assets/certificates/certificate-3.jpg', 'Java Programming', 'Professional Certification', 'May 2024', ['Java', 'OOP'], 'https://verify.example.com/cert3')">
+                                <img src="assets/certificates/certificate-3.jpg"
+                                     alt="Java Programming Certificate"
+                                     class="achievement-image">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="image-overlay">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-title">Java Programming</h4>
+                                <p class="achievement-provider">Professional Certification</p>
+                                <p class="achievement-date">May 2024</p>
+                                <div class="achievement-skills">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">OOP</span>
+                                </div>
+                                <a href="https://verify.example.com/cert3" class="verify-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Verify Certificate
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Achievement 4 -->
+                        <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="achievement-image-container" onclick="viewCertificate('cert-4', 'assets/certificates/certificate-4.jpg', 'UI/UX Design', 'Design Institute', 'April 2024', ['UI Design', 'UX Research'], 'https://verify.example.com/cert4')">
+                                <img src="assets/certificates/certificate-4.jpg"
+                                     alt="UI/UX Design Certificate"
+                                     class="achievement-image">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="image-overlay">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-title">UI/UX Design</h4>
+                                <p class="achievement-provider">Design Institute</p>
+                                <p class="achievement-date">April 2024</p>
+                                <div class="achievement-skills">
+                                    <span class="skill-tag">UI Design</span>
+                                    <span class="skill-tag">UX Research</span>
+                                </div>
+                                <a href="https://verify.example.com/cert4" class="verify-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Verify Certificate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Viewer Section -->
+                    <div id="certificateViewer" class="certificate-viewer" style="display: none;">
+                        <div class="viewer-header">
+                            <div class="viewer-title">
+                                <h3 id="viewerTitle">Certificate Details</h3>
+                                <p id="viewerSubtitle">Click to view in full detail</p>
+                            </div>
+                            <button class="viewer-close" onclick="closeCertificateViewer()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="viewer-content">
+                            <div class="viewer-image-section">
+                                <div class="image-container">
+                                    <img id="viewerImage" src="" alt="" class="viewer-certificate-image">
+                                    <div class="image-controls">
+                                        <button class="control-btn" onclick="zoomViewer('in')" title="Zoom In">
+                                            <i class="fas fa-search-plus"></i>
+                                        </button>
+                                        <button class="control-btn" onclick="zoomViewer('out')" title="Zoom Out">
+                                            <i class="fas fa-search-minus"></i>
+                                        </button>
+                                        <button class="control-btn" onclick="resetViewerZoom()" title="Reset Zoom">
+                                            <i class="fas fa-expand-arrows-alt"></i>
+                                        </button>
+                                        <button class="control-btn" onclick="downloadCertificate()" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="viewer-info-section">
+                                <div class="certificate-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-certificate detail-icon"></i>
+                                        <div class="detail-content">
+                                            <h4 id="viewerCertTitle">Certificate Title</h4>
+                                            <p id="viewerCertProvider">Provider</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-item">
+                                        <i class="fas fa-calendar detail-icon"></i>
+                                        <div class="detail-content">
+                                            <h5>Completion Date</h5>
+                                            <p id="viewerCertDate">Date</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-item">
+                                        <i class="fas fa-cogs detail-icon"></i>
+                                        <div class="detail-content">
+                                            <h5>Skills Acquired</h5>
+                                            <div id="viewerCertSkills" class="viewer-skills"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-item">
+                                        <i class="fas fa-external-link-alt detail-icon"></i>
+                                        <div class="detail-content">
+                                            <h5>Verification</h5>
+                                            <a id="viewerVerifyLink" href="#" class="viewer-verify-btn" target="_blank">
+                                                <i class="fas fa-shield-alt"></i>
+                                                Verify Authenticity
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Section -->
+                    <div class="achievements-stats" data-aos="fade-up" data-aos-delay="500">
+                        <div class="stat-item">
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2025</div>
+                            <div class="stat-label">Latest Achievement</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Skill Areas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -725,7 +961,7 @@
     });
 </script>
 <script>
-    (function() {
+    (function () {
         const navbar = document.getElementById('navbar');
         if (navbar) {
             navbar.classList.add('loaded');
@@ -735,6 +971,7 @@
 <script src="js/navbar.js"></script>
 <script src="js/home.js"></script>
 <script src="js/about.js"></script>
+<script src="js/achievements.js"></script>
 <script src="js/projects.js"></script>
 <script src="js/contact.js"></script>
 <script src="js/footer.js"></script>
