@@ -6,6 +6,7 @@ let viewerStartY = 0;
 let viewerTranslateX = 0;
 let viewerTranslateY = 0;
 let currentCertificateImage = '';
+let statsAnimated = false; // Track if stats have been animated
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
@@ -23,11 +24,228 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize viewer image interactions
     initViewerImageInteractions();
 
+    // Update statistics with actual data (but don't animate yet)
+    updateAchievementStats(false);
+
+    // Initialize stats animation observer
+    initStatsAnimation();
+
     // Add keyboard event listener
     document.addEventListener('keydown', handleKeyPress);
 
     console.log('Achievements section initialized successfully');
 });
+
+// Function to update achievement statistics dynamically
+function updateAchievementStats(animate = true) {
+    console.log('Updating achievement statistics...');
+
+    // Get all achievement cards
+    const achievementCards = document.querySelectorAll('.achievement-card');
+
+    // Count certificates
+    const certificateCount = achievementCards.length;
+
+    // Get unique skills from all certificates
+    const allSkills = new Set();
+    achievementCards.forEach(card => {
+        const skillTags = card.querySelectorAll('.skill-tag');
+        skillTags.forEach(tag => {
+            allSkills.add(tag.textContent.trim());
+        });
+    });
+
+    // Get latest date from certificates
+    let latestYear = 0;
+    achievementCards.forEach(card => {
+        const dateElement = card.querySelector('.achievement-date');
+        if (dateElement) {
+            const dateText = dateElement.textContent.trim();
+            // Extract year from different date formats
+            const yearMatch = dateText.match(/\b(20\d{2})\b/);
+            if (yearMatch) {
+                const year = parseInt(yearMatch[1]);
+                if (year > latestYear) {
+                    latestYear = year;
+                }
+            }
+        }
+    });
+
+    // Get unique skill areas/categories
+    const skillAreas = new Set();
+    allSkills.forEach(skill => {
+        // Categorize skills into broader areas
+        const skillLower = skill.toLowerCase();
+        if (skillLower.includes('java') || skillLower.includes('programming') || skillLower.includes('python') || skillLower.includes('algorithm')) {
+            skillAreas.add('Programming');
+        } else if (skillLower.includes('web') || skillLower.includes('html') || skillLower.includes('css') || skillLower.includes('ui') || skillLower.includes('design')) {
+            skillAreas.add('Web Development');
+        } else if (skillLower.includes('api') || skillLower.includes('postman') || skillLower.includes('rest') || skillLower.includes('http')) {
+            skillAreas.add('API Development');
+        } else if (skillLower.includes('data') || skillLower.includes('structure')) {
+            skillAreas.add('Data Science');
+        } else {
+            skillAreas.add('Technical Skills');
+        }
+    });
+
+    // Store the target values in data attributes for animation
+    const statElements = [
+        {
+            selector: '.stat-item:nth-child(1) .stat-number',
+            value: certificateCount,
+            suffix: '+',
+            label: 'Certifications'
+        },
+        {
+            selector: '.stat-item:nth-child(2) .stat-number',
+            value: latestYear || 2025,
+            suffix: '',
+            label: 'Latest Achievement'
+        },
+        {selector: '.stat-item:nth-child(3) .stat-number', value: skillAreas.size, suffix: '', label: 'Skill Areas'}
+    ];
+
+    statElements.forEach((stat, index) => {
+        const numberElement = document.querySelector(stat.selector);
+        const labelElement = document.querySelector(`.stat-item:nth-child(${index + 1}) .stat-label`);
+
+        if (numberElement && labelElement) {
+            // Store target values for animation
+            numberElement.setAttribute('data-target', stat.value);
+            numberElement.setAttribute('data-suffix', stat.suffix);
+            numberElement.setAttribute('data-is-year', stat.value > 1900 ? 'true' : 'false');
+
+            // Update labels immediately
+            labelElement.textContent = stat.label;
+
+            if (!animate) {
+                // Just set the final values without animation
+                numberElement.textContent = stat.value + stat.suffix;
+            }
+        }
+    });
+
+    console.log(`Statistics updated: ${certificateCount} certificates, ${allSkills.size} unique skills, ${skillAreas.size} skill areas, latest year: ${latestYear}`);
+    console.log('Skills found:', Array.from(allSkills));
+    console.log('Skill areas:', Array.from(skillAreas));
+}
+
+// Initialize stats animation with intersection observer
+function initStatsAnimation() {
+    const statsSection = document.querySelector('.achievements-stats');
+    if (!statsSection) return;
+
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !statsAnimated) {
+                statsAnimated = true;
+                animateAllStats();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    statsObserver.observe(statsSection);
+}
+
+// Animate all statistics
+function animateAllStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    statNumbers.forEach((element, index) => {
+        const target = parseInt(element.getAttribute('data-target'));
+        const suffix = element.getAttribute('data-suffix') || '';
+        const isYear = element.getAttribute('data-is-year') === 'true';
+
+        if (!isNaN(target)) {
+            // Add staggered delay for each stat
+            setTimeout(() => {
+                if (isYear) {
+                    // For years, just animate the appearance
+                    animateYearAppearance(element, target);
+                } else {
+                    // For counts, animate the counting
+                    animateCounter(element, target, suffix);
+                }
+            }, index * 200); // 200ms delay between each stat
+        }
+    });
+}
+
+// Animate counter with smooth counting effect
+function animateCounter(element, targetValue, suffix = '') {
+    let currentValue = 0;
+    const duration = 2000; // 2 seconds
+    const steps = 60; // 60 steps for smooth animation
+    const increment = targetValue / steps;
+    const stepDuration = duration / steps;
+
+    // Add bounce-in animation class
+    element.style.transform = 'scale(0.5)';
+    element.style.opacity = '0';
+
+    setTimeout(() => {
+        element.style.transition = 'transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease';
+        element.style.transform = 'scale(1)';
+        element.style.opacity = '1';
+    }, 100);
+
+    const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= targetValue) {
+            element.textContent = targetValue + suffix;
+            clearInterval(timer);
+
+            // Add completion pulse effect
+            element.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 200);
+        } else {
+            element.textContent = Math.floor(currentValue) + suffix;
+        }
+    }, stepDuration);
+}
+
+// Animate year appearance with typewriter effect
+function animateYearAppearance(element, year) {
+    const yearString = year.toString();
+    let currentIndex = 0;
+
+    // Add bounce-in animation
+    element.style.transform = 'scale(0.5)';
+    element.style.opacity = '0';
+    element.textContent = '';
+
+    setTimeout(() => {
+        element.style.transition = 'transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease';
+        element.style.transform = 'scale(1)';
+        element.style.opacity = '1';
+
+        // Typewriter effect for year
+        const typeInterval = setInterval(() => {
+            if (currentIndex <= yearString.length) {
+                element.textContent = yearString.substring(0, currentIndex);
+                currentIndex++;
+            } else {
+                clearInterval(typeInterval);
+
+                // Add completion pulse effect
+                element.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    element.style.transform = 'scale(1)';
+                }, 200);
+            }
+        }, 150); // 150ms per character
+    }, 300);
+}
 
 // Function to view certificate inline
 function viewCertificate(certId, imageSrc, title, provider, date, skills, verifyLink) {
@@ -171,7 +389,7 @@ function initViewerImageInteractions() {
     if (!viewerImage) return;
 
     // Mouse wheel zoom
-    viewerImage.addEventListener('wheel', function(e) {
+    viewerImage.addEventListener('wheel', function (e) {
         e.preventDefault();
 
         const delta = e.deltaY > 0 ? -0.1 : 0.1;
@@ -188,7 +406,7 @@ function initViewerImageInteractions() {
     });
 
     // Mouse drag functionality
-    viewerImage.addEventListener('mousedown', function(e) {
+    viewerImage.addEventListener('mousedown', function (e) {
         if (currentViewerZoom > 1) {
             viewerIsDragging = true;
             viewerStartX = e.clientX - viewerTranslateX;
@@ -198,7 +416,7 @@ function initViewerImageInteractions() {
         }
     });
 
-    document.addEventListener('mousemove', function(e) {
+    document.addEventListener('mousemove', function (e) {
         if (viewerIsDragging && currentViewerZoom > 1) {
             viewerTranslateX = e.clientX - viewerStartX;
             viewerTranslateY = e.clientY - viewerStartY;
@@ -206,7 +424,7 @@ function initViewerImageInteractions() {
         }
     });
 
-    document.addEventListener('mouseup', function() {
+    document.addEventListener('mouseup', function () {
         if (viewerIsDragging) {
             viewerIsDragging = false;
             const viewerImage = document.getElementById('viewerImage');
@@ -221,7 +439,7 @@ function initViewerImageInteractions() {
     let touchStartX = 0;
     let touchStartY = 0;
 
-    viewerImage.addEventListener('touchstart', function(e) {
+    viewerImage.addEventListener('touchstart', function (e) {
         if (e.touches.length === 2) {
             lastTouchDistance = getTouchDistance(e.touches);
         } else if (e.touches.length === 1 && currentViewerZoom > 1) {
@@ -232,7 +450,7 @@ function initViewerImageInteractions() {
         e.preventDefault();
     });
 
-    viewerImage.addEventListener('touchmove', function(e) {
+    viewerImage.addEventListener('touchmove', function (e) {
         e.preventDefault();
 
         if (e.touches.length === 2) {
@@ -249,7 +467,7 @@ function initViewerImageInteractions() {
         }
     });
 
-    viewerImage.addEventListener('touchend', function() {
+    viewerImage.addEventListener('touchend', function () {
         viewerIsDragging = false;
     });
 
@@ -264,7 +482,7 @@ function initViewerImageInteractions() {
 function handleKeyPress(e) {
     const viewer = document.getElementById('certificateViewer');
     if (viewer && viewer.classList.contains('active')) {
-        switch(e.key) {
+        switch (e.key) {
             case 'Escape':
                 closeCertificateViewer();
                 break;
@@ -379,7 +597,7 @@ function initAchievementsSection() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const cardObserver = new IntersectionObserver(function(entries) {
+    const cardObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -402,74 +620,32 @@ function initAchievementCards() {
     achievementCards.forEach(card => {
         const skillTags = card.querySelectorAll('.skill-tag');
         skillTags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
+            tag.addEventListener('mouseenter', function () {
                 this.style.transform = 'translateY(-2px)';
             });
 
-            tag.addEventListener('mouseleave', function() {
+            tag.addEventListener('mouseleave', function () {
                 this.style.transform = 'translateY(0)';
             });
         });
 
         const verifyBtn = card.querySelector('.verify-btn');
         if (verifyBtn) {
-            verifyBtn.addEventListener('mouseenter', function() {
+            verifyBtn.addEventListener('mouseenter', function () {
                 this.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
             });
 
-            verifyBtn.addEventListener('mouseleave', function() {
+            verifyBtn.addEventListener('mouseleave', function () {
                 this.style.background = 'linear-gradient(135deg, #56a5fa, #667eea)';
             });
         }
     });
-
-    animateStats();
-}
-
-function animateStats() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    const observerOptions = {
-        threshold: 0.5
-    };
-
-    const statsObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const finalValue = target.textContent;
-                const isNumber = !isNaN(parseInt(finalValue));
-
-                if (isNumber) {
-                    animateCounter(target, parseInt(finalValue));
-                }
-                statsObserver.unobserve(target);
-            }
-        });
-    }, observerOptions);
-
-    statNumbers.forEach(stat => {
-        statsObserver.observe(stat);
-    });
-}
-
-function animateCounter(element, targetValue) {
-    let currentValue = 0;
-    const increment = targetValue / 50;
-    const timer = setInterval(() => {
-        currentValue += increment;
-        if (currentValue >= targetValue) {
-            element.textContent = targetValue + (element.textContent.includes('+') ? '+' : '');
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(currentValue) + (element.textContent.includes('+') ? '+' : '');
-        }
-    }, 30);
 }
 
 // Add loading state for verify buttons
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.verify-btn, .viewer-verify-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening...';
             this.style.pointerEvents = 'none';
@@ -481,6 +657,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Add function to manually refresh stats (useful for debugging)
+window.refreshAchievementStats = function () {
+    statsAnimated = false; // Reset animation flag
+    updateAchievementStats(false);
+    setTimeout(() => {
+        animateAllStats();
+    }, 100);
+    console.log('Achievement statistics manually refreshed with animation');
+};
 
 // Add to window for debugging
 window.viewCertificate = viewCertificate;
