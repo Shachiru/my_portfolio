@@ -1,10 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initParticles();
-
     initFormInteractions();
-
     initFormSubmission();
-
     initContactAnimations();
 });
 
@@ -80,19 +77,20 @@ function initFormInteractions() {
             input.classList.add('has-content');
         }
 
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             if (this.value.trim() !== '') {
                 this.classList.add('has-content');
             } else {
                 this.classList.remove('has-content');
             }
+            removeError(this);
         });
 
-        input.addEventListener('focus', function() {
+        input.addEventListener('focus', function () {
             this.parentElement.classList.add('focused');
         });
 
-        input.addEventListener('blur', function() {
+        input.addEventListener('blur', function () {
             this.parentElement.classList.remove('focused');
         });
     });
@@ -103,65 +101,141 @@ function initFormSubmission() {
     const successModal = document.getElementById('successModal');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            let isValid = true;
-            const fields = contactForm.querySelectorAll('.cosmic-input');
+            if (!validateForm()) {
+                return;
+            }
 
-            fields.forEach(field => {
-                if (field.value.trim() === '') {
-                    isValid = false;
-                    showError(field, 'This field is required');
-                } else if (field.id === 'email' && !validateEmail(field.value)) {
-                    isValid = false;
-                    showError(field, 'Please enter a valid email address');
-                } else {
-                    removeError(field);
-                }
-            });
+            const submitButton = document.getElementById('submitBtn');
+            const originalContent = submitButton.innerHTML;
 
-            if (isValid) {
-                const submitButton = contactForm.querySelector('.cosmic-button');
-                submitButton.innerHTML = '<span class="cosmic-button-text">Sending...</span><div class="loader"></div>';
-                submitButton.disabled = true;
+            // Show loading state briefly
+            submitButton.innerHTML = '<span class="cosmic-button-text">Opening...</span><div class="loader"></div>';
+            submitButton.disabled = true;
 
+            // Get form data
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Create email body
+            const emailBody = createEmailBody(name, email, subject, message);
+
+            // Create mailto link
+            const mailtoLink = `mailto:shachirurashmika35@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            // Small delay to show loading state
+            setTimeout(() => {
+                // Open email client
+                window.location.href = mailtoLink;
+
+                // Show success modal
+                showSuccessModal();
+
+                // Reset button state
+                submitButton.innerHTML = originalContent;
+                submitButton.disabled = false;
+
+                // Reset form after a short delay
                 setTimeout(() => {
-                    showSuccessModal();
-
                     contactForm.reset();
                     document.querySelectorAll('.cosmic-input').forEach(input => {
                         input.classList.remove('has-content');
+                        removeError(input);
                     });
+                }, 1000);
 
-                    submitButton.innerHTML = '<span class="cosmic-button-text">Send Message</span><span class="cosmic-button-icon"><i class="fas fa-paper-plane"></i></span><span class="cosmic-button-effect"></span>';
-                    submitButton.disabled = false;
-                }, 1500);
-            }
+            }, 800);
         });
     }
 
+    // Modal close handlers
     document.querySelectorAll('.close-modal').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             hideSuccessModal();
         });
     });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            hideSuccessModal();
+        }
+    });
+
+    // Close modal on backdrop click
+    if (successModal) {
+        successModal.addEventListener('click', function (e) {
+            if (e.target === successModal) {
+                hideSuccessModal();
+            }
+        });
+    }
+}
+
+function createEmailBody(name, email, subject, message) {
+    const currentDate = new Date().toLocaleString();
+
+    return `Hello Shachiru,
+
+I hope this email finds you well. I'm reaching out through your portfolio contact form.
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+
+---
+This message was sent from your portfolio contact form on ${currentDate}.
+
+Best regards,
+${name}`;
+}
+
+function validateForm() {
+    let isValid = true;
+    const fields = [
+        {id: 'name', message: 'Please enter your name'},
+        {id: 'email', message: 'Please enter a valid email address'},
+        {id: 'subject', message: 'Please enter a subject'},
+        {id: 'message', message: 'Please enter your message'}
+    ];
+
+    fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const value = input.value.trim();
+
+        if (value === '') {
+            isValid = false;
+            showError(input, field.message);
+        } else if (field.id === 'email' && !validateEmail(value)) {
+            isValid = false;
+            showError(input, 'Please enter a valid email address');
+        } else {
+            removeError(input);
+        }
+    });
+
+    return isValid;
 }
 
 function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
 }
 
 function showError(field, message) {
     removeError(field);
-
     field.classList.add('error');
 
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
-
     field.parentElement.appendChild(errorDiv);
 }
 
@@ -177,18 +251,6 @@ function showSuccessModal() {
     const modal = document.getElementById('successModal');
     if (modal) {
         modal.classList.add('show');
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                hideSuccessModal();
-            }
-        });
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                hideSuccessModal();
-            }
-        });
     }
 }
 

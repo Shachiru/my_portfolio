@@ -294,7 +294,8 @@
                     <div class="achievements-grid">
                         <!-- Achievement 1 -->
                         <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="achievement-image-container" onclick="viewCertificate('cert-1', 'assets/certificates/java-21-certificate.png', 'Top Features of Java 21', 'LinkedIn Learning', 'September 2025', ['Java', 'Programming'], 'https://www.linkedin.com/learning/certificates/e0e7014f57ebd3e7aa993311d560abf46e60ab5d0ad0202fd32b533a17092b3b')">
+                            <div class="achievement-image-container"
+                                 onclick="viewCertificate('cert-1', 'assets/certificates/java-21-certificate.png', 'Top Features of Java 21', 'LinkedIn Learning', 'September 2025', ['Java', 'Programming'], 'https://www.linkedin.com/learning/certificates/e0e7014f57ebd3e7aa993311d560abf46e60ab5d0ad0202fd32b533a17092b3b')">
                                 <img src="assets/certificates/java-21-certificate.png"
                                      alt="Top Features of Java 21"
                                      class="achievement-image">
@@ -324,7 +325,8 @@
 
                         <!-- Achievement 2 -->
                         <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="achievement-image-container" onclick="viewCertificate('cert-2', 'assets/certificates/python-for-beginners.png', 'Python for Beginners', 'University of Moratuwa', 'July 2025', ['Python', 'Programming'], 'https://www.linkedin.com/posts/shachiru1234_python-coding-universityofmoratuwa-activity-7361305083285794817-0imj')">
+                            <div class="achievement-image-container"
+                                 onclick="viewCertificate('cert-2', 'assets/certificates/python-for-beginners.png', 'Python for Beginners', 'University of Moratuwa', 'July 2025', ['Python', 'Programming'], 'https://www.linkedin.com/posts/shachiru1234_python-coding-universityofmoratuwa-activity-7361305083285794817-0imj')">
                                 <img src="assets/certificates/python-for-beginners.png"
                                      alt="Python for Beginners"
                                      class="achievement-image">
@@ -354,7 +356,8 @@
 
                         <!-- Achievement 3 -->
                         <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="achievement-image-container" onclick="viewCertificate('cert-3', 'assets/certificates/certificate-3.jpg', 'Java Programming', 'Professional Certification', 'May 2024', ['Java', 'OOP'], 'https://verify.example.com/cert3')">
+                            <div class="achievement-image-container"
+                                 onclick="viewCertificate('cert-3', 'assets/certificates/certificate-3.jpg', 'Java Programming', 'Professional Certification', 'May 2024', ['Java', 'OOP'], 'https://verify.example.com/cert3')">
                                 <img src="assets/certificates/certificate-3.jpg"
                                      alt="Java Programming Certificate"
                                      class="achievement-image">
@@ -383,7 +386,8 @@
 
                         <!-- Achievement 4 -->
                         <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
-                            <div class="achievement-image-container" onclick="viewCertificate('cert-4', 'assets/certificates/certificate-4.jpg', 'UI/UX Design', 'Design Institute', 'April 2024', ['UI Design', 'UX Research'], 'https://verify.example.com/cert4')">
+                            <div class="achievement-image-container"
+                                 onclick="viewCertificate('cert-4', 'assets/certificates/certificate-4.jpg', 'UI/UX Design', 'Design Institute', 'April 2024', ['UI Design', 'UX Research'], 'https://verify.example.com/cert4')">
                                 <img src="assets/certificates/certificate-4.jpg"
                                      alt="UI/UX Design Certificate"
                                      class="achievement-image">
@@ -788,7 +792,8 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <div class="cosmic-input-group">
-                                    <input type="text" id="name" class="cosmic-input" required autocomplete="off">
+                                    <input type="text" id="name" name="name" class="cosmic-input" required
+                                           autocomplete="off">
                                     <label for="name" class="cosmic-label">Your Name</label>
                                     <div class="cosmic-input-line"></div>
                                 </div>
@@ -796,7 +801,8 @@
 
                             <div class="col-md-6 form-group">
                                 <div class="cosmic-input-group">
-                                    <input type="email" id="email" class="cosmic-input" required autocomplete="off">
+                                    <input type="email" id="email" name="email" class="cosmic-input" required
+                                           autocomplete="off">
                                     <label for="email" class="cosmic-label">Your Email</label>
                                     <div class="cosmic-input-line"></div>
                                 </div>
@@ -805,7 +811,8 @@
 
                         <div class="form-group">
                             <div class="cosmic-input-group">
-                                <input type="text" id="subject" class="cosmic-input" required autocomplete="off">
+                                <input type="text" id="subject" name="subject" class="cosmic-input" required
+                                       autocomplete="off">
                                 <label for="subject" class="cosmic-label">Subject</label>
                                 <div class="cosmic-input-line"></div>
                             </div>
@@ -813,14 +820,14 @@
 
                         <div class="form-group">
                             <div class="cosmic-input-group textarea">
-                                <textarea id="message" class="cosmic-input" rows="5" required></textarea>
+                                <textarea id="message" name="message" class="cosmic-input" rows="5" required></textarea>
                                 <label for="message" class="cosmic-label">Your Message</label>
                                 <div class="cosmic-input-line"></div>
                             </div>
                         </div>
 
                         <div class="text-center mt-4">
-                            <button type="submit" class="cosmic-button">
+                            <button type="submit" class="cosmic-button" id="submitBtn">
                                 <span class="cosmic-button-text">Send Message</span>
                                 <span class="cosmic-button-icon">
                                     <i class="fas fa-paper-plane"></i>
@@ -879,11 +886,12 @@
                         <a href="https://github.com/Shachiru" class="social-icon" target="_blank" title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.instagram.com/shachiru_r/" class="social-icon" target="_blank"
+                        <a href="https://www.instagram.com/iam.shachiru?utm_source=qr&igsh=MWtiNHMzaW9nZWkxNg== "
+                           class="social-icon" target="_blank"
                            title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.facebook.com/shachiru.kodithuwakku" class="social-icon" target="_blank"
+                        <a href="https://www.facebook.com/share/1AjRuUB6Pf/" class="social-icon" target="_blank"
                            title="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
@@ -901,8 +909,9 @@
                         <span class="icon-line line-long"></span>
                     </div>
                 </div>
-                <h3>Message Sent!</h3>
-                <p>Thank you for reaching out. I'll get back to you shortly.</p>
+                <h3>Email Client Opened!</h3>
+                <p>Your default email client should now be open with the message pre-filled. Simply send the email to
+                    reach me!</p>
                 <button class="cosmic-button close-modal">
                     <span class="cosmic-button-text">Close</span>
                 </button>

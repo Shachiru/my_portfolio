@@ -71,9 +71,8 @@
     -webkit-backdrop-filter: blur(12px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.3),
-            inset 0 0 1px 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 1px 1px rgba(255, 255, 255, 0.1);
     padding: 30px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative;
@@ -102,9 +101,8 @@
 
 .glass-card:hover {
     transform: translateY(-5px);
-    box-shadow:
-            0 15px 35px rgba(0, 0, 0, 0.4),
-            inset 0 0 1px 1px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+    inset 0 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .glass-card:hover::before {
@@ -133,6 +131,11 @@
     transition: all 0.3s ease;
 }
 
+.cosmic-input.error {
+    border: 2px solid #ff4757;
+    background: rgba(255, 71, 87, 0.1);
+}
+
 .cosmic-input-group.textarea .cosmic-input {
     min-height: 120px;
     resize: vertical;
@@ -149,14 +152,16 @@
 }
 
 .cosmic-input:focus,
-.cosmic-input:valid {
+.cosmic-input:valid,
+.cosmic-input.has-content {
     background: rgba(255, 255, 255, 0.1);
     outline: none;
     box-shadow: 0 0 0 2px rgba(86, 165, 250, 0.2);
 }
 
 .cosmic-input:focus + .cosmic-label,
-.cosmic-input:valid + .cosmic-label {
+.cosmic-input:valid + .cosmic-label,
+.cosmic-input.has-content + .cosmic-label {
     top: -10px;
     left: 15px;
     font-size: 0.8rem;
@@ -178,8 +183,30 @@
 }
 
 .cosmic-input:focus ~ .cosmic-input-line,
-.cosmic-input:valid ~ .cosmic-input-line {
+.cosmic-input:valid ~ .cosmic-input-line,
+.cosmic-input.has-content ~ .cosmic-input-line {
     width: 100%;
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff4757;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding-left: 5px;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-2px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(2px);
+    }
 }
 
 /* Cosmic button styling */
@@ -201,6 +228,12 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    min-width: 150px;
+}
+
+.cosmic-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .cosmic-button-text {
@@ -225,21 +258,40 @@
     transition: opacity 0.4s ease;
 }
 
-.cosmic-button:hover .cosmic-button-effect {
+.cosmic-button:hover:not(:disabled) .cosmic-button-effect {
     opacity: 1;
 }
 
-.cosmic-button:hover {
+.cosmic-button:hover:not(:disabled) {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.cosmic-button:hover .cosmic-button-icon {
+.cosmic-button:hover:not(:disabled) .cosmic-button-icon {
     transform: translateX(3px);
 }
 
-.cosmic-button:active {
+.cosmic-button:active:not(:disabled) {
     transform: translateY(-1px);
+}
+
+/* Loading spinner */
+.loader {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Contact info card */
@@ -402,6 +454,18 @@
 .message-modal p {
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 25px;
+}
+
+/* Error icon styling */
+.error-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    color: #ff4757;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Success Checkmark Animation */
